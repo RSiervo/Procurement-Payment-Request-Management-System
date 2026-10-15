@@ -1,0 +1,254 @@
+/* Dark theme. Loaded last: it redefines the design tokens, then adjusts the few
+   places that use fixed light colours (tinted tiles, callouts, the banner). */
+
+:root[data-theme="dark"] {
+  color-scheme: dark; /* native date pickers, selects and scrollbars follow */
+
+  --bg: #0e131d;
+  --surface: #161c29;
+  --surface-sunken: #1b2231;
+  --border: #283145;
+  --border-strong: #3a4660;
+  --text: #e7ebf2;
+  --text-secondary: #aab4c4;
+  --text-muted: #8c98ab;
+
+  /* Lighter blue for links, icons and focus rings; buttons keep a deeper fill (below). */
+  --accent: #7aa7fa;
+  --accent-hover: #9bbdfc;
+  --accent-soft: #1b2947;
+  --accent-ring: rgba(122, 167, 250, 0.35);
+
+  /* Chart and type colours re-stepped for a dark surface (validated as a set). */
+  --type-pr: #5b8ff5;
+  --type-rfp: #1fa293;
+  --type-reim: #a066ee;
+  --type-other: #8a96a8;
+
+  --tone-neutral: #b4bdcb;
+  --tone-neutral-bg: #252d3e;
+  --tone-info: #8fb4fb;
+  --tone-info-bg: #1a2a4c;
+  --tone-warning: #f0bf6c;
+  --tone-warning-bg: #3a2c12;
+  --tone-success: #6fd39a;
+  --tone-success-bg: #12301f;
+  --tone-danger: #f58b84;
+  --tone-danger-bg: #3a1a1a;
+  --tone-purple: #b9a3f5;
+  --tone-purple-bg: #2a2147;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: #2f6be6;
+  color: #fff;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) {
+  background: #3f7af0;
+}
+
+[data-theme="dark"] .btn-danger {
+  border-color: #6b2f2c;
+}
+
+[data-theme="dark"] .btn-outline {
+  background: transparent;
+  border-color: #35508a;
+}
+
+[data-theme="dark"] .nav-count,
+[data-theme="dark"] .choice-check,
+[data-theme="dark"] .choice[aria-pressed="true"] .choice-icon,
+[data-theme="dark"] .stepper-step[data-state="current"] .stepper-num,
+[data-theme="dark"] .brand-mark {
+  background: #2f6be6;
+  color: #fff;
+}
+
+[data-theme="dark"] .stepper-step[data-state="current"] .stepper-num {
+  border-color: #2f6be6;
+}
+
+/* Count badges: white digits need a deeper red than the dark theme's text red. */
+[data-theme="dark"] .dot {
+  background: #c4372f;
+}
+
+/* A logo drawn for white paper needs a light backing to stay readable. */
+[data-theme="dark"] .brand-logo {
+  background: #fff;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
+/* Alerts and callouts */
+[data-theme="dark"] .alert-danger,
+[data-theme="dark"] .callout-danger {
+  border-color: #6b2f2c;
+  color: #f7a8a2;
+}
+
+[data-theme="dark"] .alert-warning,
+[data-theme="dark"] .callout-warning {
+  border-color: #5c4519;
+  color: #f3cd8a;
+}
+
+[data-theme="dark"] .alert-info,
+[data-theme="dark"] .callout-action {
+  border-color: #2b4379;
+  color: #b7cffc;
+}
+
+[data-theme="dark"] .callout strong {
+  color: var(--text);
+}
+
+/* Tinted icon tiles */
+[data-theme="dark"] .icon-chip[data-tone="amber"] {
+  background: #3a2c12;
+  color: #f0b451;
+}
+
+[data-theme="dark"] .icon-chip[data-tone="green"] {
+  background: #12301f;
+  color: #5fcf91;
+}
+
+[data-theme="dark"] .icon-chip[data-tone="purple"] {
+  background: #2a2147;
+  color: #b594f7;
+}
+
+[data-theme="dark"] .icon-chip[data-tone="teal"] {
+  background: #10302d;
+  color: #45c9ba;
+}
+
+/* Solid KPI tiles keep their own colour and white icon. */
+[data-theme="dark"] .icon-chip[data-solid="true"] {
+  color: #fff;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .icon-chip[data-solid="true"]:not([data-tone]),
+[data-theme="dark"] .icon-chip[data-solid="true"][data-tone="blue"] {
+  background: #2f6fed;
+}
+
+[data-theme="dark"] .icon-chip[data-solid="true"][data-tone="amber"] {
+  background: #d98f22;
+}
+
+[data-theme="dark"] .icon-chip[data-solid="true"][data-tone="teal"] {
+  background: #17a894;
+}
+
+[data-theme="dark"] .icon-chip[data-solid="true"][data-tone="purple"] {
+  background: #8754e0;
+}
+
+/* Request type pills and tags */
+[data-theme="dark"] .type-pill,
+[data-theme="dark"] .type-tag .icon-chip {
+  background: #252d3e;
+}
+
+[data-theme="dark"] .type-pill[data-type="PR"],
+[data-theme="dark"] .type-tag[data-type="PR"] {
+  color: #8fb4fb;
+}
+
+[data-theme="dark"] .type-pill[data-type="PR"],
+[data-theme="dark"] .type-tag[data-type="PR"] .icon-chip {
+  background: #1a2a4c;
+}
+
+[data-theme="dark"] .type-pill[data-type="RFP"],
+[data-theme="dark"] .type-tag[data-type="RFP"] {
+  color: #4fd0c1;
+}
+
+[data-theme="dark"] .type-pill[data-type="RFP"],
+[data-theme="dark"] .type-tag[data-type="RFP"] .icon-chip {
+  background: #10302d;
+}
+
+[data-theme="dark"] .type-pill[data-type="REIM"],
+[data-theme="dark"] .type-tag[data-type="REIM"] {
+  color: #c2a4f8;
+}
+
+[data-theme="dark"] .type-pill[data-type="REIM"],
+[data-theme="dark"] .type-tag[data-type="REIM"] .icon-chip {
+  background: #2a2147;
+}
+
+/* Tables and avatars */
+[data-theme="dark"] .table td {
+  border-bottom-color: #222a3a;
+}
+
+[data-theme="dark"] .table .avatar,
+[data-theme="dark"] .user-chip .avatar {
+  background: #46536b;
+  color: #fff;
+}
+
+/* Timeline connector for completed steps */
+[data-theme="dark"] .timeline-item[data-state="done"]::before {
+  background: #2c6b47;
+}
+
+/* Welcome banner */
+[data-theme="dark"] .hero {
+  border: 1px solid #25355a;
+  background: linear-gradient(96deg, #141c2e 0%, #17233f 50%, #1c2e57 100%);
+}
+
+[data-theme="dark"] .hero h1 {
+  color: #f1f5fc;
+}
+
+[data-theme="dark"] .hero p {
+  color: #a9b8d4;
+}
+
+[data-theme="dark"] .hero-art {
+  opacity: 0.4;
+}
+
+/* Overlays */
+[data-theme="dark"] .overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .toast {
+  background: #2a3347;
+  border: 1px solid #3a4660;
+}
+
+[data-theme="dark"] .toast-error {
+  background: #5a1f1c;
+  border-color: #7d2c28;
+}
+
+[data-theme="dark"] .action-bar {
+  box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* The theme switch shows the icon for the mode you would switch to. */
+.theme-toggle .icon-moon,
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+.theme-toggle .icon-sun,
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}

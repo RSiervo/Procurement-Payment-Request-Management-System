@@ -1,0 +1,78 @@
+/* Design tokens. Every colour, size and shadow in the app comes from here. */
+:root {
+  /* Surfaces and ink */
+  --bg: #f3f6fb;
+  --surface: #ffffff;
+  --surface-sunken: #f7f9fc;
+  --border: #e3e8f0;
+  --border-strong: #cbd3df;
+  --text: #18202b;
+  --text-secondary: #4d5867;
+  --text-muted: #626c7c;
+
+  /* Accent */
+  --accent: #2160e0;
+  --accent-hover: #1a4fc0;
+  --accent-soft: #ebf2fe;
+  --accent-ring: rgba(33, 96, 224, 0.26);
+
+  /* Request-type identity colours (validated as a colour-blind-safe set). Used for the
+     type pills and the dashboard charts, always next to a text label. */
+  --type-pr: #2563eb;
+  --type-rfp: #0d9488;
+  --type-reim: #9333ea;
+  --type-ca: #d97706;
+  --type-liq: #db2777;
+  --type-other: #64748b;
+
+  /* Status tones: text on soft background */
+  --tone-neutral: #4d5867;
+  --tone-neutral-bg: #eef0f3;
+  --tone-info: #1a4fb8;
+  --tone-info-bg: #e8f0fe;
+  --tone-warning: #8a5300;
+  --tone-warning-bg: #fdf1dc;
+  --tone-success: #17683a;
+  --tone-success-bg: #e3f4e9;
+  --tone-danger: #b3261e;
+  --tone-danger-bg: #fdecea;
+  --tone-purple: #5b3cb4;
+  --tone-purple-bg: #efeafc;
+
+  /* Type */
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  /* Spacing (4px grid) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s8: 32px;
+  --s10: 40px;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(30, 58, 110, 0.05), 0 1px 6px rgba(30, 58, 110, 0.04);
+  --shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.16);
+
+  --control-h: 44px; /* touch target */
+  --sidebar-w: 256px;
+  --topbar-h: 60px;
+  --tabbar-h: 58px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --control-h: 38px;
+  }
+}

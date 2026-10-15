@@ -1,0 +1,361 @@
+/* Motion: small, quick movements that make the interface feel responsive without
+   changing how anything looks at rest. Everything here is switched off for people who
+   ask their device to reduce motion (see the rule in base.css). */
+
+/* ---------- Pages arrive ---------- */
+/* Each block of a page fades up in turn. "backwards" leaves no transform behind once
+   it has finished, so sticky bars and fixed menus inside keep working. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.page > *:not(.action-bar):not(.dashboard-grid),
+.dash-main > *,
+.dash-side > * {
+  animation: rise-in 0.42s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+.page > *:nth-child(2),
+.dash-main > *:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.page > *:nth-child(3),
+.dash-main > *:nth-child(3),
+.dash-side > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.page > *:nth-child(4),
+.dash-main > *:nth-child(4),
+.dash-side > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.page > *:nth-child(n + 5),
+.dash-main > *:nth-child(n + 5) {
+  animation-delay: 0.2s;
+}
+
+/* Cards in a row follow one another. */
+.kpi-grid > *,
+.stat-grid > *,
+.choice-grid > * {
+  animation: rise-in 0.4s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+.kpi-grid > *:nth-child(2),
+.stat-grid > *:nth-child(2),
+.choice-grid > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.kpi-grid > *:nth-child(3),
+.stat-grid > *:nth-child(3),
+.choice-grid > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.kpi-grid > *:nth-child(4),
+.stat-grid > *:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.stat-grid > *:nth-child(n + 5) {
+  animation-delay: 0.24s;
+}
+
+/* Rows of a list or table appear top to bottom. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.table tbody tr,
+.record-card,
+.feed-item,
+.notification,
+.quick-action,
+.timeline-item {
+  animation: fade-in 0.35s ease-out backwards;
+}
+
+:is(.table tbody tr, .record-card, .feed-item, .quick-action, .timeline-item):nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+:is(.table tbody tr, .record-card, .feed-item, .quick-action, .timeline-item):nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+:is(.table tbody tr, .record-card, .feed-item, .quick-action, .timeline-item):nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+:is(.table tbody tr, .record-card, .feed-item, .timeline-item):nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+:is(.table tbody tr, .record-card, .feed-item, .timeline-item):nth-child(n + 6) {
+  animation-delay: 0.2s;
+}
+
+/* ---------- Things respond to the pointer ---------- */
+.kpi,
+a.stat,
+button.stat,
+.quick-action,
+.choice,
+.flow-node[href] {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .kpi:hover,
+  a.stat:hover,
+  button.stat:hover,
+  .choice:hover:not(:disabled),
+  .flow-node[href]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30, 58, 110, 0.13);
+  }
+
+  /* The icon tile gives a small nod when its card is hovered. */
+  .kpi .icon-chip,
+  .stat .icon-chip,
+  .quick-action .icon-chip,
+  .choice .choice-icon {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .kpi:hover .icon-chip,
+  .stat:hover .icon-chip,
+  .quick-action:hover .icon-chip,
+  .choice:hover .choice-icon {
+    transform: scale(1.08) rotate(-4deg);
+  }
+
+  /* Arrows lean in the direction they point. */
+  .quick-action > svg:last-child,
+  .btn svg.lucide-arrow-right,
+  .callout svg.lucide-arrow-right {
+    transition: transform 0.2s ease;
+  }
+
+  .quick-action:hover > svg:last-child,
+  .btn:hover:not(:disabled) svg.lucide-arrow-right,
+  .callout:hover svg.lucide-arrow-right {
+    transform: translateX(4px);
+  }
+
+  .nav-item > svg:first-child,
+  .tabbar-item > svg {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .nav-item:hover > svg:first-child {
+    transform: scale(1.12);
+  }
+
+  .table tbody tr {
+    transition: background-color 0.15s ease;
+  }
+
+  .theme-toggle:hover svg {
+    transform: rotate(20deg);
+  }
+}
+
+.theme-toggle svg,
+.nav-item,
+.tab,
+.icon-btn {
+  transition: transform 0.25s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Buttons give under the finger. */
+.btn {
+  transition: background-color 0.12s, border-color 0.12s, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled),
+  .btn-success:hover:not(:disabled) {
+    box-shadow: 0 6px 14px rgba(33, 96, 224, 0.26);
+  }
+
+  .btn-success:hover:not(:disabled) {
+    box-shadow: 0 6px 14px rgba(27, 122, 67, 0.28);
+  }
+}
+
+.tabbar-item:active > svg {
+  transform: scale(0.86);
+}
+
+.tabbar-item.active > svg {
+  animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.7);
+  }
+}
+
+/* ---------- Things that are waiting, breathe ---------- */
+/* The step an approval is currently sitting at. */
+@keyframes pulse-ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px var(--accent-ring);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(33, 96, 224, 0.08);
+  }
+}
+
+.timeline-item[data-state="current"] .timeline-dot {
+  animation: pulse-ring 2.2s ease-in-out infinite;
+}
+
+/* Unread notifications: the bell rings briefly every few seconds, and the count pops in. */
+@keyframes ring {
+  0%,
+  88%,
+  100% {
+    transform: rotate(0);
+  }
+
+  90% {
+    transform: rotate(14deg);
+  }
+
+  93% {
+    transform: rotate(-12deg);
+  }
+
+  96% {
+    transform: rotate(8deg);
+  }
+
+  98% {
+    transform: rotate(-4deg);
+  }
+}
+
+.icon-btn:has(> .dot) > svg {
+  transform-origin: 50% 10%;
+  animation: ring 6s ease-in-out infinite;
+}
+
+.icon-btn .dot,
+.tabbar-item .dot,
+.nav-count {
+  animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+/* A callout that asks for action gets a slow sheen across it. */
+@keyframes sheen {
+  0%,
+  70% {
+    background-position: -150% 0;
+  }
+
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+.callout-action {
+  background-image: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  animation: sheen 5s ease-in-out infinite;
+}
+
+[data-theme="dark"] .callout-action {
+  background-image: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.08) 50%, transparent 60%);
+}
+
+/* ---------- Charts draw themselves ---------- */
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.chart-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw-line 1.1s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.chart-marker {
+  animation: fade-in 0.3s ease-out 0.9s backwards;
+}
+
+@keyframes donut-in {
+  from {
+    opacity: 0;
+    transform: rotate(-120deg) scale(0.85);
+  }
+}
+
+.donut svg {
+  transform-origin: 50% 50%;
+  animation: donut-in 0.8s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+.donut-center {
+  animation: fade-in 0.5s ease-out 0.35s backwards;
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.bar-fill {
+  transform-origin: left center;
+  animation: grow-bar 0.7s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+/* The wizard's progress fills in as steps are completed. */
+.stepper-num {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stepper-step[data-state="current"] .stepper-num {
+  transform: scale(1.08);
+}
+
+/* ---------- Loading ---------- */
+.loading {
+  animation: fade-in 0.3s ease-out 0.15s backwards; /* no flash for fast responses */
+}
+
+/* ---------- Animations switched off in Settings ----------
+   Same effect as the device's "reduce motion" setting, chosen per account. */
+[data-motion="off"] *,
+[data-motion="off"] *::before,
+[data-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Text that is painted by an animated gradient falls back to a plain colour. */
+[data-motion="off"] .login-brand-name {
+  color: rgba(255, 255, 255, 0.92);
+  background-image: none;
+}

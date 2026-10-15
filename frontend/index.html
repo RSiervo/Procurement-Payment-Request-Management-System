@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PPMS Portal" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Procurement &amp; Payment Portal</title>
+    <script>
+      (function () {
+        var theme = null
+        try { theme = localStorage.getItem('portal-theme') } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+        // Display settings cached from the last visit.
+        try {
+          var density = localStorage.getItem('portal-density')
+          if (density === 'compact' || density === 'comfortable') document.documentElement.dataset.density = density
+          if (localStorage.getItem('portal-motion') === 'off') document.documentElement.dataset.motion = 'off'
+        } catch (e) {}
+        // Colour theme chosen in Settings, cached from the last visit. Not on the sign-in page.
+        try {
+          var accent = localStorage.getItem('portal-accent')
+          if (accent && location.pathname.indexOf('/login') !== 0) {
+            if (/^[a-z]+$/.test(accent)) {
+              document.documentElement.dataset.accent = accent
+            } else if (/^#[0-9a-f]{6}$/.test(accent)) {
+              // A colour of the person's own: its worked-out colours were cached alongside.
+              var vars = JSON.parse(localStorage.getItem('portal-accent-vars') || '{}')
+              for (var name in vars) {
+                if (/^--brand[a-z0-9-]*$/.test(name) && /^[#0-9a-f, ]+$/.test(vars[name])) {
+                  document.documentElement.style.setProperty(name, vars[name])
+                }
+              }
+              document.documentElement.dataset.accent = 'custom'
+            }
+          }
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

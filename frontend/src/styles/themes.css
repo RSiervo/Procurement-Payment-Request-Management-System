@@ -1,0 +1,317 @@
+/* Colour themes. A person picks one under Profile → Settings; it is set as
+   data-accent on <html>. Each theme supplies five colours and everything else is
+   derived from them, in light and in dark mode. The default (Ocean) sets no
+   attribute and uses the values in tokens.css untouched.
+
+   --brand        buttons and strong accents; white text must read on it
+   --brand-hover  the same, pressed or hovered
+   --brand-rgb    --brand as "r, g, b", for shadows and rings
+   --brand-light  accent text and icons on dark surfaces
+   --brand-2      the second colour of gradients (banner name, edge light)
+
+   Status colours and the request-type colours in charts do not change with the
+   theme: they carry meaning. */
+
+:root[data-accent="indigo"]   { --brand: #4f46e5; --brand-hover: #4338ca; --brand-rgb: 79, 70, 229;  --brand-light: #a5b4fc; --brand-2: #7c3aed; }
+:root[data-accent="violet"]   { --brand: #7c3aed; --brand-hover: #6d28d9; --brand-rgb: 124, 58, 237; --brand-light: #c4b5fd; --brand-2: #db2777; }
+:root[data-accent="plum"]     { --brand: #9d2f9a; --brand-hover: #86198f; --brand-rgb: 157, 47, 154; --brand-light: #e9a5e6; --brand-2: #4f46e5; }
+:root[data-accent="rose"]     { --brand: #c01763; --brand-hover: #b0175c; --brand-rgb: 192, 23, 99; --brand-light: #f9a8d4; --brand-2: #e0672a; }
+:root[data-accent="crimson"]  { --brand: #c81e3a; --brand-hover: #a81930; --brand-rgb: 200, 30, 58;  --brand-light: #fda4af; --brand-2: #d9631e; }
+:root[data-accent="sunset"]   { --brand: #b23a0a; --brand-hover: #9a3412; --brand-rgb: 178, 58, 10;  --brand-light: #fdba74; --brand-2: #c01763; }
+:root[data-accent="amber"]    { --brand: #a34a07; --brand-hover: #92400e; --brand-rgb: 163, 74, 7;   --brand-light: #fcd34d; --brand-2: #b23a0a; }
+:root[data-accent="olive"]    { --brand: #44700c; --brand-hover: #3f6212; --brand-rgb: 68, 112, 12;  --brand-light: #bef264; --brand-2: #0f766e; }
+:root[data-accent="forest"]   { --brand: #127237; --brand-hover: #166534; --brand-rgb: 18, 114, 55;  --brand-light: #86efac; --brand-2: #0e7490; }
+:root[data-accent="teal"]     { --brand: #0f766e; --brand-hover: #115e59; --brand-rgb: 15, 118, 110; --brand-light: #5eead4; --brand-2: #2160e0; }
+:root[data-accent="sky"]      { --brand: #0369a1; --brand-hover: #075985; --brand-rgb: 3, 105, 161;  --brand-light: #7dd3fc; --brand-2: #0f766e; }
+:root[data-accent="navy"]     { --brand: #1e3a8a; --brand-hover: #172f6e; --brand-rgb: 30, 58, 138;  --brand-light: #a9bcf5; --brand-2: #2160e0; }
+:root[data-accent="graphite"] { --brand: #475569; --brand-hover: #334155; --brand-rgb: 71, 85, 105;  --brand-light: #cbd5e1; --brand-2: #0f766e; }
+:root[data-accent="bronze"]   { --brand: #92562a; --brand-hover: #7a4621; --brand-rgb: 146, 86, 42;  --brand-light: #e3b98f; --brand-2: #a34a07; }
+
+/* ---------- Tokens derived from the theme ---------- */
+:root[data-accent] {
+  --accent: var(--brand);
+  --accent-hover: var(--brand-hover);
+  --accent-soft: color-mix(in srgb, var(--brand) 9%, #fff);
+  --accent-ring: rgba(var(--brand-rgb), 0.26);
+  --bg: color-mix(in srgb, var(--brand) 5%, #f5f6f8);
+  /* The glass building on the dashboard banner. */
+  --art-1: color-mix(in srgb, var(--brand) 20%, #fff);
+  --art-2: color-mix(in srgb, var(--brand) 45%, #fff);
+  --art-3: color-mix(in srgb, var(--brand) 78%, #fff);
+}
+
+:root[data-theme="dark"][data-accent] {
+  --accent: var(--brand-light);
+  --accent-hover: color-mix(in srgb, var(--brand-light) 80%, #fff);
+  --accent-soft: color-mix(in srgb, var(--brand) 24%, #161c29);
+  --accent-ring: rgba(var(--brand-rgb), 0.45);
+  --bg: #0e131d;
+  --art-1: color-mix(in srgb, var(--brand) 45%, #1b2540);
+  --art-2: color-mix(in srgb, var(--brand) 60%, #1b2540);
+  --art-3: color-mix(in srgb, var(--brand) 80%, #1b2540);
+}
+
+/* ---------- Places that used a fixed blue ---------- */
+[data-accent][data-theme="dark"] .btn-primary {
+  background: var(--brand);
+}
+
+[data-accent][data-theme="dark"] .btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brand) 85%, #fff);
+}
+
+@media (hover: hover) {
+  [data-accent] .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 14px rgba(var(--brand-rgb), 0.28);
+  }
+}
+
+[data-accent] .login-submit {
+  box-shadow: 0 8px 18px rgba(var(--brand-rgb), 0.32);
+}
+
+/* Dashboard banner */
+[data-accent] .hero {
+  background: linear-gradient(96deg,
+    color-mix(in srgb, var(--brand) 5%, #fff) 0%,
+    color-mix(in srgb, var(--brand) 11%, #fff) 48%,
+    color-mix(in srgb, var(--brand) 22%, #fff) 100%);
+}
+
+[data-accent] .hero h1 {
+  color: color-mix(in srgb, var(--brand) 30%, #101a2b);
+}
+
+[data-accent] .hero .hero-date {
+  color: color-mix(in srgb, var(--brand) 60%, #1c2430);
+}
+
+[data-accent] .hero-name {
+  background-image: linear-gradient(95deg, var(--brand) 0%, var(--brand-2) 100%);
+}
+
+[data-accent] .hero-date-icon {
+  box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.2);
+}
+
+[data-accent] .hero-orb-a {
+  background: rgba(var(--brand-rgb), 0.26);
+}
+
+[data-accent] .hero-orb-b {
+  background: color-mix(in srgb, var(--brand-2) 22%, transparent);
+}
+
+[data-accent] .hero::after {
+  background-image: linear-gradient(90deg, transparent 0%, var(--brand) 30%, var(--brand-2) 50%, var(--brand) 70%, transparent 100%);
+}
+
+[data-accent][data-theme="dark"] .hero {
+  border-color: color-mix(in srgb, var(--brand) 35%, #25355a);
+  background: linear-gradient(96deg,
+    #141c2e 0%,
+    color-mix(in srgb, var(--brand) 16%, #141c2e) 50%,
+    color-mix(in srgb, var(--brand) 34%, #141c2e) 100%);
+}
+
+[data-accent][data-theme="dark"] .hero h1 {
+  color: #f1f5fc;
+}
+
+[data-accent][data-theme="dark"] .hero .hero-date {
+  color: color-mix(in srgb, var(--brand-light) 70%, #9db4dc);
+}
+
+[data-accent][data-theme="dark"] .hero-name {
+  background-image: linear-gradient(95deg, var(--brand-light) 0%, color-mix(in srgb, var(--brand-2) 45%, #fff) 100%);
+}
+
+/* The round "create" button on phones */
+[data-accent] .tabbar-fab {
+  background: radial-gradient(circle at 32% 24%,
+    color-mix(in srgb, var(--brand) 45%, #fff) 0%,
+    color-mix(in srgb, var(--brand) 85%, #fff) 38%,
+    var(--brand) 68%,
+    var(--brand-hover) 100%);
+  background-clip: padding-box;
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 6px color-mix(in srgb, var(--brand) 45%, rgba(0, 0, 0, 0.6)),
+    0 var(--fab-rim) 0 color-mix(in srgb, var(--brand) 62%, #000),
+    0 calc(var(--fab-rim) + 8px) 18px rgba(var(--brand-rgb), 0.5);
+}
+
+[data-accent] .tabbar-fab:active {
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 6px color-mix(in srgb, var(--brand) 45%, rgba(0, 0, 0, 0.6)),
+    0 0 0 color-mix(in srgb, var(--brand) 62%, #000),
+    0 4px 10px rgba(var(--brand-rgb), 0.45);
+}
+
+[data-accent] .tabbar-fab[aria-expanded="true"] {
+  background-image: radial-gradient(circle at 32% 24%,
+    color-mix(in srgb, var(--brand) 60%, #fff) 0%,
+    var(--brand) 45%,
+    var(--brand-hover) 100%);
+}
+
+/* ---------- The theme picker (Profile → Settings) ---------- */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--s2);
+}
+
+.theme-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.theme-swatch:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+
+.theme-swatch[aria-checked="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  color: var(--text);
+}
+
+.theme-swatch-color {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.35), 0 3px 8px rgba(16, 24, 40, 0.18);
+}
+
+/* ---------- A colour of the person's own ---------- */
+.theme-swatch-custom {
+  background: conic-gradient(#f43f5e, #f59e0b, #84cc16, #10b981, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #f43f5e);
+}
+
+.theme-custom {
+  margin-top: var(--s3);
+  padding: var(--s4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-sunken);
+}
+
+.colour-wheel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s5, 24px);
+}
+
+.colour-wheel-disc {
+  position: relative;
+  flex: none;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  cursor: crosshair;
+  touch-action: none;
+  box-shadow: 0 0 0 1px var(--border), var(--shadow-sm);
+}
+
+/* Hue around the circle, fading to white at the centre; dimmed by the brightness slider. */
+.colour-wheel-disc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, #fff, rgba(255, 255, 255, 0)),
+    conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  filter: brightness(var(--wheel-brightness, 1));
+}
+
+.colour-wheel-disc:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.colour-wheel-thumb {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.colour-wheel-side {
+  flex: 1;
+  min-width: 180px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.colour-wheel-range {
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  margin: 2px 0 10px;
+  border-radius: 999px;
+  outline-offset: 3px;
+}
+
+.colour-wheel-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--brand, var(--accent));
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.colour-wheel-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--brand, var(--accent));
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.colour-wheel-code {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.colour-wheel-chip {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.colour-wheel-code .input {
+  font-family: ui-monospace, Consolas, monospace;
+  text-transform: lowercase;
+}

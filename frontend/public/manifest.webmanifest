@@ -1,0 +1,21 @@
+{
+  "name": "Procurement & Payment Portal",
+  "short_name": "PPMS Portal",
+  "description": "Purchase requisitions, requests for payment and reimbursements, with approvals.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#2160e0",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Create Request", "url": "/requests/new", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Approvals", "url": "/approvals", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

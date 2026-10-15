@@ -1,0 +1,22 @@
+# Secrets and local state
+.env
+.env.*
+.local/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+backend/media/
+backend/staticfiles/
+
+# Node
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
